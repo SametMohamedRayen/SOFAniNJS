@@ -15,7 +15,7 @@ export class CRUDGeneric<T> {
   findOne(id: number): Promise<T> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return this.repositoy.findOne(id);
+    return this.repository.findOne(id);
   }
 
   async update(id: number, entity): Promise<(DeepPartial<T> & T)[]> {
@@ -23,7 +23,7 @@ export class CRUDGeneric<T> {
     if (newEntity) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      return this.repositroy.save(newEntity);
+      return this.repositrory.save(newEntity);
     } else {
       throw new NotFoundException(`id ${id} doesn't exist!`);
     }

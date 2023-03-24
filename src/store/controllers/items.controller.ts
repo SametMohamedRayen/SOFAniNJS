@@ -1,8 +1,7 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { ItemsService } from "../services/items.service";
-import { ItemEntity } from "../entities/item.entity";
-import { CreateItemDto } from "../dto/create-item.dto";
-import { UpdateItemDto } from "../dto/update-item.dto";
+import { ItemsService } from '../services/items.service';
+import { CreateItemDto } from '../dto/create-item.dto';
+import { UpdateItemDto } from '../dto/update-item.dto';
 
 @Controller('items')
 export class ItemsController {
@@ -15,7 +14,8 @@ export class ItemsController {
 
   @Post()
   addItem(@Body() createItemDto: CreateItemDto) {
-    return this.itemsService.create(createItemDto);}
+    return this.itemsService.create(createItemDto);
+  }
 
   @Patch(':id')
   updateItem(@Param('id') id: number, @Body() updateItemDto: UpdateItemDto) {
