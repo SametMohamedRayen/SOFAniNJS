@@ -7,6 +7,11 @@ import { UpdateItemDto } from '../dto/update-item.dto';
 export class ItemsController {
   constructor(private itemsService: ItemsService) {}
 
+  @Get()
+  findAll() {
+    return this.itemsService.findAll();
+  }
+
   @Get(':id')
   findById(@Param('id') id: number) {
     return this.itemsService.findOne(id);
