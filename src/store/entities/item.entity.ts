@@ -9,7 +9,7 @@ export class ItemEntity extends TimestampEntity {
   id: number;
   @Column({ length: 50 })
   inStoreReference: string;
-  @Column({ length: 50 })
+  @Column({ length: 50, unique: true })
   name: string;
   @Column({ length: 100 })
   description: string;
@@ -19,9 +19,21 @@ export class ItemEntity extends TimestampEntity {
   price: number;
   @Column({ default: true })
   availability: boolean;
-  @Column()
+  @Column('longblob', {
+    nullable: false,
+    transformer: {
+      to: (value: string) => Buffer.from(value),
+      from: (value: Buffer) => value.toString(),
+    },
+  })
   meshBLOB: string;
-  @Column()
+  @Column('longblob', {
+    nullable: false,
+    transformer: {
+      to: (value: string) => Buffer.from(value),
+      from: (value: Buffer) => value.toString(),
+    },
+  })
   imageBLOB: string;
   @ManyToOne(() => StoreEntity, (store: StoreEntity) => store.items)
   store: StoreEntity;

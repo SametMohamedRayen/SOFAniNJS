@@ -17,6 +17,11 @@ export class ItemsController {
     return this.itemsService.findOne(id);
   }
 
+  @Get('/names/:names')
+  findByNames(@Param('names') names: string) {
+    return this.itemsService.findManyByNames(names);
+  }
+
   @Post()
   addItem(@Body() createItemDto: CreateItemDto) {
     return this.itemsService.create(createItemDto);

@@ -1,6 +1,6 @@
 import { ItemEntity } from '../entities/item.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { In, Repository } from "typeorm";
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -15,6 +15,14 @@ export class ItemsService {
 
   findAll(): Promise<ItemEntity[]> {
     return this.repository.find();
+  }
+
+  async findManyByNames(names: string): Promise<any> {
+    const arrayOfNames = names.split(',');
+    console.log(arrayOfNames);
+    return this.repository.find({
+      where: { name: In(arrayOfNames) },
+    });
   }
 
   findOne(id: number): Promise<ItemEntity> {
